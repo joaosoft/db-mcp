@@ -28,12 +28,12 @@ func (d *OracleDialect) QuoteIdentifier(name string) string {
 }
 
 // PaginationClause returns OFFSET/FETCH syntax (Oracle 12c+)
+// Oracle requires ORDER BY before OFFSET/FETCH, uses NULL if not provided
 func (d *OracleDialect) PaginationClause(limit, offset int, orderBy string) string {
-	pagination := fmt.Sprintf("OFFSET %d ROWS FETCH NEXT %d ROWS ONLY", offset, limit)
-	if orderBy != "" {
-		return fmt.Sprintf("ORDER BY %s %s", orderBy, pagination)
+	if orderBy == "" {
+		orderBy = "NULL"
 	}
-	return pagination
+	return fmt.Sprintf("ORDER BY %s OFFSET %d ROWS FETCH NEXT %d ROWS ONLY", orderBy, offset, limit)
 }
 
 // ConcatOperator returns || concatenation

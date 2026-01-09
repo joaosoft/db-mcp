@@ -28,6 +28,7 @@ func (d *SQLServerDialect) QuoteIdentifier(name string) string {
 }
 
 // PaginationClause returns OFFSET/FETCH syntax
+// SQL Server requires ORDER BY before OFFSET/FETCH, uses (SELECT NULL) if not provided
 func (d *SQLServerDialect) PaginationClause(limit, offset int, orderBy string) string {
 	if orderBy == "" {
 		orderBy = "(SELECT NULL)"

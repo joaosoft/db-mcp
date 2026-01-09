@@ -28,6 +28,7 @@ func (d *SQLiteDialect) QuoteIdentifier(name string) string {
 }
 
 // PaginationClause returns LIMIT/OFFSET syntax
+// SQLite does not require ORDER BY for LIMIT/OFFSET to work
 func (d *SQLiteDialect) PaginationClause(limit, offset int, orderBy string) string {
 	pagination := fmt.Sprintf("LIMIT %d OFFSET %d", limit, offset)
 	if orderBy != "" {

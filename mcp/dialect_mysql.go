@@ -28,6 +28,7 @@ func (d *MySQLDialect) QuoteIdentifier(name string) string {
 }
 
 // PaginationClause returns LIMIT/OFFSET syntax
+// MySQL does not require ORDER BY for LIMIT/OFFSET to work
 func (d *MySQLDialect) PaginationClause(limit, offset int, orderBy string) string {
 	pagination := fmt.Sprintf("LIMIT %d OFFSET %d", limit, offset)
 	if orderBy != "" {

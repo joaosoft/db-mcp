@@ -39,11 +39,6 @@ func (qb *QueryBuilder) Concat(parts ...string) string {
 	return qb.dialect.ConcatOperator(parts...)
 }
 
-// Limit returns the pagination clause for the driver
-func (qb *QueryBuilder) Limit(limit, offset int) string {
-	return qb.dialect.PaginationClause(limit, offset, "")
-}
-
 // CurrentDatabase returns the function to get current database name
 func (qb *QueryBuilder) CurrentDatabase() string {
 	return qb.dialect.CurrentDatabase()
