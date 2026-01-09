@@ -1,4 +1,4 @@
-module database-mcp
+module db-mcp
 
 go 1.24.3
 

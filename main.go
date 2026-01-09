@@ -1,7 +1,7 @@
 package main
 
 import (
-	"database-mcp/mcp"
+	"db-mcp/mcp"
 	"log"
 
 	_ "github.com/denisenkom/go-mssqldb"
